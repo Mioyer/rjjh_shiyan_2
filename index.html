@@ -1,0 +1,203 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智慧停车系统</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <style>
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1470224114660-3f6686c562eb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+        }
+        .card-parking {
+            transition: transform 0.3s;
+        }
+        .card-parking:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .footer {
+            background-color: #343a40;
+            color: white;
+            padding: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="bi bi-p-circle-fill me-2"></i>智慧停车系统
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">首页</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="parking-list.html">停车场</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="orders.html">我的订单</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="profile.html">个人中心</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 英雄区域 -->
+    <section class="hero-section text-center">
+        <div class="container">
+            <h1 class="display-4 fw-bold mb-4">找到最合适的停车位</h1>
+            <p class="lead mb-5">浏览附近的停车场，预订您的车位，享受无忧的停车体验</p>
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control form-control-lg" placeholder="输入地址、停车场名称搜索...">
+                        <button class="btn btn-primary btn-lg" type="button" onclick="window.location.href='parking-list.html'">
+                            <i class="bi bi-search me-2"></i>搜索
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 推荐停车场 -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="mb-4">热门停车场</h2>
+            <div class="row g-4">
+                <!-- 停车场卡片1 -->
+                <div class="col-md-4">
+                    <div class="card card-parking h-100">
+                        <img src="https://images.unsplash.com/photo-1621929747188-0b4dc28498d2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" class="card-img-top" alt="停车场">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <h5 class="card-title mb-0">城市中心停车场</h5>
+                                <span class="badge bg-success">剩余车位: 15</span>
+                            </div>
+                            <p class="card-text text-muted"><i class="bi bi-geo-alt me-1"></i>市中心商业区A栋旁</p>
+                            <div class="d-flex justify-content-between">
+                                <span><i class="bi bi-currency-yen"></i> 10元/小时</span>
+                                <span><i class="bi bi-lightning-charge"></i> 支持充电</span>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white border-top-0">
+                            <a href="parking-detail.html?id=1" class="btn btn-outline-primary w-100">查看详情</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 停车场卡片2 -->
+                <div class="col-md-4">
+                    <div class="card card-parking h-100">
+                        <img src="https://images.unsplash.com/photo-1590674899484-13d6c7094a11?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=174&q=80" class="card-img-top" alt="停车场">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <h5 class="card-title mb-0">星光广场停车场</h5>
+                                <span class="badge bg-warning text-dark">剩余车位: 5</span>
+                            </div>
+                            <p class="card-text text-muted"><i class="bi bi-geo-alt me-1"></i>星光广场地下一层</p>
+                            <div class="d-flex justify-content-between">
+                                <span><i class="bi bi-currency-yen"></i> 8元/小时</span>
+                                <span><i class="bi bi-lightning-charge"></i> 支持充电</span>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white border-top-0">
+                            <a href="parking-detail.html?id=2" class="btn btn-outline-primary w-100">查看详情</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 停车场卡片3 -->
+                <div class="col-md-4">
+                    <div class="card card-parking h-100">
+                        <img src="https://images.unsplash.com/photo-1573348722427-f453d96ac8e5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" class="card-img-top" alt="停车场">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <h5 class="card-title mb-0">科技园停车场</h5>
+                                <span class="badge bg-danger">剩余车位: 2</span>
+                            </div>
+                            <p class="card-text text-muted"><i class="bi bi-geo-alt me-1"></i>科技园区C座</p>
+                            <div class="d-flex justify-content-between">
+                                <span><i class="bi bi-currency-yen"></i> 12元/小时</span>
+                                <span><i class="bi bi-lightning-charge"></i> 支持充电</span>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white border-top-0">
+                            <a href="parking-detail.html?id=3" class="btn btn-outline-primary w-100">查看详情</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 功能介绍 -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5">简单三步，轻松停车</h2>
+            <div class="row g-4">
+                <div class="col-md-4 text-center">
+                    <div class="bg-white p-4 rounded shadow-sm">
+                        <i class="bi bi-search text-primary" style="font-size: 3rem;"></i>
+                        <h4 class="mt-4">搜索停车场</h4>
+                        <p class="text-muted">输入目的地，找到附近的停车场</p>
+                    </div>
+                </div>
+                <div class="col-md-4 text-center">
+                    <div class="bg-white p-4 rounded shadow-sm">
+                        <i class="bi bi-bookmark-check text-primary" style="font-size: 3rem;"></i>
+                        <h4 class="mt-4">预订车位</h4>
+                        <p class="text-muted">选择合适的车位并提前预订</p>
+                    </div>
+                </div>
+                <div class="col-md-4 text-center">
+                    <div class="bg-white p-4 rounded shadow-sm">
+                        <i class="bi bi-map text-primary" style="font-size: 3rem;"></i>
+                        <h4 class="mt-4">导航前往</h4>
+                        <p class="text-muted">获取精准导航，轻松找到您的车位</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5 class="mb-3">智慧停车系统</h5>
+                    <p class="mb-0">为您提供便捷的停车场搜索、预订和导航服务</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p class="mb-0">© 2023 智慧停车系统. 版权所有</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // 模拟数据加载
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('页面加载完成，可以在这里加载模拟数据');
+        });
+    </script>
+</body>
+</html> 

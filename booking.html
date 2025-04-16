@@ -1,0 +1,193 @@
+<!-- booking.html -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>预订确认 - 智慧停车系统</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <style>
+        .booking-success {
+            text-align: center;
+            padding: 30px 0;
+        }
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: #198754;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 2.5rem;
+        }
+        .qr-code {
+            border: 1px solid #dee2e6;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: white;
+            width: 200px;
+            height: 200px;
+            margin: 20px auto;
+        }
+        .footer {
+            background-color: #343a40;
+            color: white;
+            padding: 20px 0;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="bi bi-p-circle-fill me-2"></i>智慧停车系统
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">首页</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="parking-list.html">停车场</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="orders.html">我的订单</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="profile.html">个人中心</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主要内容 -->
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <!-- 预订成功提示 -->
+                <div class="card mb-4">
+                    <div class="card-body booking-success">
+                        <div class="success-icon">
+                            <i class="bi bi-check-lg"></i>
+                        </div>
+                        <h2 class="mb-3">预订成功！</h2>
+                        <p class="text-muted">您的车位已成功预订，订单编号：<span class="fw-bold">PK2023061500153</span></p>
+                    </div>
+                </div>
+
+                <!-- 订单详情 -->
+                <div class="card mb-4">
+                    <div class="card-header bg-light">
+                        <h5 class="mb-0">订单详情</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <p class="mb-2"><strong>停车场：</strong> 城市中心停车场</p>
+                                <p class="mb-2"><strong>车位编号：</strong> A4 (地下一层)</p>
+                                <p class="mb-2"><strong>车牌号码：</strong> 京A·12345</p>
+                            </div>
+                            <div class="col-md-6">
+                                <p class="mb-2"><strong>预订时间：</strong> 2023-06-15 12:30</p>
+                                <p class="mb-2"><strong>到达时间：</strong> 2023-06-15 14:00</p>
+                                <p class="mb-2"><strong>离开时间：</strong> 2023-06-15 18:00</p>
+                            </div>
+                        </div>
+                        
+                        <div class="card bg-light mb-4">
+                            <div class="card-body">
+                                <h6>费用明细</h6>
+                                <div class="d-flex justify-content-between">
+                                    <span>停车费用 (4小时 × 10元/小时)</span>
+                                    <span>¥40.00</span>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <span>服务费</span>
+                                    <span>¥2.00</span>
+                                </div>
+                                <hr>
+                                <div class="d-flex justify-content-between fw-bold">
+                                    <span>总计</span>
+                                    <span>¥42.00</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="alert alert-info mb-4">
+                            <h6 class="mb-2"><i class="bi bi-info-circle me-2"></i>入场须知</h6>
+                            <p class="small mb-0">请在预约时间前后30分钟内到达，超时将可能导致预订失效。进入停车场时，请出示入场二维码或者车牌号供系统识别。</p>
+                        </div>
+                        
+                        <div class="text-center mb-3">
+                            <h6>入场二维码</h6>
+                            <div class="qr-code">
+                                <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=PK2023061500153" alt="入场二维码">
+                            </div>
+                            <p class="small text-muted">请向停车场管理人员出示此二维码</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 按钮区域 -->
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <a href="navigation.html?id=1" class="btn btn-primary w-100">
+                            <i class="bi bi-map me-2"></i>获取导航
+                        </a>
+                    </div>
+                    <div class="col-md-4">
+                        <button type="button" class="btn btn-outline-primary w-100" onclick="window.print()">
+                            <i class="bi bi-printer me-2"></i>打印订单
+                        </button>
+                    </div>
+                    <div class="col-md-4">
+                        <a href="orders.html" class="btn btn-outline-secondary w-100">
+                            <i class="bi bi-list-ul me-2"></i>查看所有订单
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5 class="mb-3">智慧停车系统</h5>
+                    <p class="mb-0">为您提供便捷的停车场搜索、预订和导航服务</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p class="mb-0">© 2023 智慧停车系统. 版权所有</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 获取URL参数
+            const urlParams = new URLSearchParams(window.location.search);
+            const parkingId = urlParams.get('id');
+            const spotId = urlParams.get('spot');
+            
+            console.log('预订的停车场ID:', parkingId);
+            console.log('预订的车位:', spotId);
+            
+            // 这里可以添加根据参数动态填充页面内容的逻辑
+        });
+    </script>
+</body>
+</html> 

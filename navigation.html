@@ -1,0 +1,290 @@
+<!-- navigation.html -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>导航 - 智慧停车系统</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <style>
+        .map-container {
+            height: 400px;
+            background-color: #f8f9fa;
+            position: relative;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        .map-overlay {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            z-index: 100;
+        }
+        .direction-step {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #dee2e6;
+        }
+        .direction-step:last-child {
+            border-bottom: none;
+        }
+        .indoor-map {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .indoor-map img {
+            max-width: 100%;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+        }
+        .footer {
+            background-color: #343a40;
+            color: white;
+            padding: 20px 0;
+            margin-top: 40px;
+        }
+        .turn-icon {
+            width: 40px;
+            height: 40px;
+            background-color: #f8f9fa;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: #0d6efd;
+            margin-right: 15px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="bi bi-p-circle-fill me-2"></i>智慧停车系统
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">首页</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="parking-list.html">停车场</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="orders.html">我的订单</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="profile.html">个人中心</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 导航内容 -->
+    <div class="container py-4">
+        <div class="row mb-4">
+            <div class="col-md-8">
+                <h2>导航到: 城市中心停车场</h2>
+                <p class="text-muted">
+                    <i class="bi bi-geo-alt me-1"></i> 市中心商业区A栋旁
+                    <span class="ms-3">距离: 约 3.5 公里</span>
+                    <span class="ms-3">预计时间: 15 分钟</span>
+                </p>
+            </div>
+            <div class="col-md-4 text-md-end">
+                <button class="btn btn-outline-primary me-2">
+                    <i class="bi bi-arrow-clockwise me-1"></i> 刷新路线
+                </button>
+                <button class="btn btn-outline-secondary">
+                    <i class="bi bi-three-dots me-1"></i> 更多选项
+                </button>
+            </div>
+        </div>
+
+        <!-- 地图视图 -->
+        <div class="map-container">
+            <!-- 模拟地图图片 -->
+            <img src="https://maps.googleapis.com/maps/api/staticmap?center=40.7128,-74.0060&zoom=13&size=800x400&maptype=roadmap&path=color:0x0000ff|weight:5|40.737,-73.990|40.749,-73.988|40.752,-73.973|40.758,-73.972&markers=color:red|label:A|40.737,-73.990&markers=color:red|label:B|40.758,-73.972&key=AIzaSyBDaeWicvigtP9xPv919E-RNoxfvC-Hqik" alt="导航地图" style="width:100%; height:100%; object-fit:cover;">
+            
+            <!-- 地图控制叠加 -->
+            <div class="map-overlay">
+                <div class="mb-2">
+                    <select class="form-select form-select-sm" aria-label="路线选择">
+                        <option>最快路线</option>
+                        <option>最短距离</option>
+                        <option>避开高速</option>
+                    </select>
+                </div>
+                <div class="btn-group btn-group-sm" role="group">
+                    <button type="button" class="btn btn-outline-dark active">
+                        <i class="bi bi-car-front"></i>
+                    </button>
+                    <button type="button" class="btn btn-outline-dark">
+                        <i class="bi bi-bicycle"></i>
+                    </button>
+                    <button type="button" class="btn btn-outline-dark">
+                        <i class="bi bi-person-walking"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 导航指引和停车场内部导航 -->
+        <div class="row">
+            <div class="col-lg-7 mb-4">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">路线指引</h5>
+                        <button class="btn btn-sm btn-outline-primary">
+                            <i class="bi bi-speaker me-1"></i> 语音导航
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <!-- 步骤1 -->
+                        <div class="direction-step d-flex">
+                            <div class="turn-icon">
+                                <i class="bi bi-arrow-right"></i>
+                            </div>
+                            <div>
+                                <h6>从当前位置出发，向东行驶</h6>
+                                <p class="text-muted mb-0">直行 500 米，然后右转进入明珠大道</p>
+                            </div>
+                        </div>
+                        
+                        <!-- 步骤2 -->
+                        <div class="direction-step d-flex">
+                            <div class="turn-icon">
+                                <i class="bi bi-arrow-90deg-right"></i>
+                            </div>
+                            <div>
+                                <h6>右转进入明珠大道</h6>
+                                <p class="text-muted mb-0">沿明珠大道行驶 1.2 公里</p>
+                            </div>
+                        </div>
+                        
+                        <!-- 步骤3 -->
+                        <div class="direction-step d-flex">
+                            <div class="turn-icon">
+                                <i class="bi bi-arrow-90deg-left"></i>
+                            </div>
+                            <div>
+                                <h6>左转进入中央大街</h6>
+                                <p class="text-muted mb-0">沿中央大街行驶 800 米</p>
+                            </div>
+                        </div>
+                        
+                        <!-- 步骤4 -->
+                        <div class="direction-step d-flex">
+                            <div class="turn-icon">
+                                <i class="bi bi-arrow-90deg-right"></i>
+                            </div>
+                            <div>
+                                <h6>右转进入商业广场路</h6>
+                                <p class="text-muted mb-0">沿商业广场路行驶 350 米</p>
+                            </div>
+                        </div>
+                        
+                        <!-- 步骤5 -->
+                        <div class="direction-step d-flex">
+                            <div class="turn-icon">
+                                <i class="bi bi-p-square"></i>
+                            </div>
+                            <div>
+                                <h6>到达目的地：城市中心停车场</h6>
+                                <p class="text-muted mb-0">位于商业区A栋旁，停车场入口在A栋北侧</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-5">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0">停车场内部导航</h5>
+                    </div>
+                    <div class="card-body">
+                        <p>您已预订车位: <strong>A4 (地下一层)</strong></p>
+                        
+                        <!-- 停车场内部地图 -->
+                        <div class="indoor-map">
+                            <img src="https://via.placeholder.com/600x400.png?text=停车场内部导航图" alt="停车场内部导航图">
+                        </div>
+                        
+                        <div class="alert alert-info">
+                            <i class="bi bi-info-circle me-2"></i>
+                            <span>入口后直行，沿指示牌前往地下一层。A区位于地下一层西侧，您的车位A4在第一排。</span>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <h6>场内设施:</h6>
+                            <div class="row">
+                                <div class="col-6">
+                                    <p class="mb-1"><i class="bi bi-elevator me-2"></i> 电梯: 3个</p>
+                                    <p class="mb-1"><i class="bi bi-staircase me-2"></i> 楼梯: 4个</p>
+                                </div>
+                                <div class="col-6">
+                                    <p class="mb-1"><i class="bi bi-lightning-charge me-2"></i> 充电桩: B区</p>
+                                    <p class="mb-1"><i class="bi bi-credit-card me-2"></i> 支付机: 出口处</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 额外提示信息 -->
+        <div class="alert alert-warning mt-3">
+            <i class="bi bi-exclamation-triangle me-2"></i>
+            <span>提示: 商业区周边目前有道路施工，可能导致交通拥堵。建议提前出发，给自己留出充足时间。</span>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5 class="mb-3">智慧停车系统</h5>
+                    <p class="mb-0">为您提供便捷的停车场搜索、预订和导航服务</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p class="mb-0">© 2023 智慧停车系统. 版权所有</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 获取URL参数
+            const urlParams = new URLSearchParams(window.location.search);
+            const parkingId = urlParams.get('id');
+            
+            console.log('导航到的停车场ID:', parkingId);
+            
+            // 模拟获取用户当前位置
+            const getUserLocation = () => {
+                console.log('正在获取用户位置...');
+                // 实际应用中，这里会使用 navigator.geolocation 获取真实位置
+            };
+            
+            getUserLocation();
+        });
+    </script>
+</body>
+</html> 
